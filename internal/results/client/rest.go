@@ -13,7 +13,6 @@ import (
 	"google.golang.org/protobuf/reflect/protoreflect"
 	"google.golang.org/protobuf/types/known/emptypb"
 	"io"
-	"k8s.io/client-go/transport"
 	"net/http"
 	"net/url"
 	"path"
@@ -32,18 +31,20 @@ type RESTClient struct {
 func NewRESTClient(c *Config) (Client, error) {
 	c.URL.Path = path.Join(c.URL.Path, pathPrefix)
 
-	rt, err := transport.New(c.Transport)
-	if err != nil {
-		return nil, err
-	}
+	//rt, err := transport.New(c.Transport)
+	//if err != nil {
+	//	return nil, err
+	//}
 
-	return &RESTClient{
-		url: c.URL,
-		client: &http.Client{
-			Transport: rt,
-			Timeout:   c.Timeout,
-		},
-	}, nil
+	//return &RESTClient{
+	//	url: c.URL,
+	//	client: &http.Client{
+	//		Transport: rt,
+	//		Timeout:   c.Timeout,
+	//	},
+	//}, nil
+	// TODO: Fix this after the GRPC fix
+	return nil, nil
 }
 
 // TODO: Get these methods from a generated client
